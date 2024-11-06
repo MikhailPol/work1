@@ -64,32 +64,32 @@ function openDeletePopup(cardElement, cardId) {
     const confirmDeleteButton = deletePopup.querySelector('.popup__confirm-delete');
     confirmDeleteButton.onclick = () => handleDeleteCard(cardElement, cardId, deletePopup);
 
-    deletePopup.addEventListener('click', ()=> {
-        closePopup(deletePopup);
-    })
+    // deletePopup.addEventListener('click', ()=> {
+    //     closePopup(deletePopup);
+    // })
 }
 
 
 
 
-export async function handleDeleteCard(cardElement, cardId, deletePopup) {
-    try {
-        const res = await fetch(`https://nomoreparties.co/v1/wff-cohort-25/cards/${cardId}`, {
-            method: 'DELETE',
-            headers: {
-                authorization: token,
-            },
-        });
+// export async function handleDeleteCard(cardElement, cardId, deletePopup) {
+//     try {
+//         const res = await fetch(`https://nomoreparties.co/v1/wff-cohort-25/cards/${cardId}`, {
+//             method: 'DELETE',
+//             headers: {
+//                 authorization: token,
+//             },
+//         });
 
-        if (!res.ok) {
-            throw new Error(`Ошибка: ${res.status}`);
-        }
+//         if (!res.ok) {
+//             throw new Error(`Ошибка: ${res.status}`);
+//         }
 
     
-        // Закрываем попап удаления
-        console.log('Закрываем попап после удаления', cardElement);
-        closePopup(deletePopup); //  попап для закрытия
-    } catch (error) {
-        console.error('Ошибка удаления карточки:', error);
-    }
-}
+//         // Закрываем попап удаления
+//         console.log('Закрываем попап после удаления', cardElement);
+//         closePopup(deletePopup); //  попап для закрытия
+//     } catch (error) {
+//         console.error('Ошибка удаления карточки:', error);
+//     }
+// }

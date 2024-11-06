@@ -2,7 +2,7 @@
 import { enableValidation, clearValidation } from './validation'; 
 import logoPath from '../images/logo.svg';
 import avatarPath from '../images/avatar.jpg';
-import { showPopup, closePopup,handleFormSubmitForEditProfilePopup } from './modal.js';
+import { showPopup, closePopup, handleCardImageClick } from './modal.js';
 import {updateUserInfo, addNewCard, updateAvatar, fetchCards,  loadUserInfoFromServer, getUserInfo, getInitialCards, toggleLike_1, updateCards, che } from './api.js';
 import { createCard, renderCards } from './card.js';
 
@@ -10,7 +10,7 @@ import '../pages/index.css';
 
 
 
-// // Элементы
+// Элементы
 const profileForm = document.forms['edit-profile'];
 const newCardForm = document.forms['new-place'];
 const avatarForm = document.querySelector('.popup_type_avatar .popup__form');
@@ -28,11 +28,10 @@ const jobInput = formForEditProfile.querySelector('.popup__input_type_descriptio
 const formForNewCard = popupNewCard.querySelector('.popup__form');
 const placeNameInput = formForNewCard.querySelector('.popup__input_type_card-name');
 const linkInput = formForNewCard.querySelector('.popup__input_type_url');
+
+
 const userData = await getUserInfo();
 const cards = await getInitialCards();
-// //   // Слушатели событий
-// formForEditProfile.addEventListener('input', checkEditProfileFormValidity);
-// formForNewCard.addEventListener('input', checkNewCardFormValidity);
 
 function display(userData, cards) {
     renderCards(cards, userData._id);
@@ -52,6 +51,72 @@ function display(userData, cards) {
 }
 
 display(userData, cards)
+
+
+// Поп-апы (Открытие, закрытие)
+const handleButtonClick = (event) => {
+    // Получаем кнопку, которая была нажата
+    const button = event.target;
+    if (button.tagName != "BUTTON") return; // Если это не кнопка, прекращаем выполнение
+    console.log(button.classList)
+    //Открываем
+
+    // Поп-апп добавления карточки
+    if (button.classList.contains('profile__add-button')) {
+        const addCardPop = document.querySelector('.popup_type_new-card');
+        showPopup(addCardPop);
+        console.log('click')
+    }
+    // Поп-апп изменения профиля
+    if (button.classList.contains('profile__edit-button')) {
+        const editProfilePop = document.querySelector('.popup_type_edit');
+        showPopup(editProfilePop);
+    }
+    // Поп-апп изменения аватара
+    if (button.classList.contains('profile-pen')) {
+        const editProfilePop = document.querySelector('.popup_type_avatar');
+        showPopup(editProfilePop);
+    }
+  
+    //Закрытия поп-апов.
+    if(button.classList.contains('popup__close')) {
+        const rmPop = document.querySelector('.popup-opened');
+        console.log(rmPop)
+        console.log('ck')
+        closePopup(rmPop);
+        
+        console.log('sa')
+    }
+}
+// Устанавливаем слушатель событий на страницу
+document.addEventListener('click', handleButtonClick);
+
+// Логика смены информации о пользователе
+// console.log(profileForm)
+// profileForm.addEventListener('submit', event => {
+//     event.preventDefault();
+//     const userName = profileForm.name.value;
+//     const description = profileForm.description.value;
+//     console.log(userName, description)
+// })
+
+// Обновление информации о пользователе
+profileForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const nameInput = profileForm.querySelector('.popup__input_type_name');
+  const aboutInput = profileForm.querySelector('.popup__input_type_description');
+  const name = nameInput.value;
+  const about = aboutInput.value;
+
+  try {
+    const updatedData = await updateUserInfo(name, about);
+    profileTitle.textContent = updatedData.name;
+    profileDesc.textContent = updatedData.about;
+    closePopup(popupEdit);
+  } catch (err) {
+    console.error('Ошибка обновления профиля:', err);
+  }
+});
 
 // Производим рендеринг страницы на основе полученных данных
 // renderCards(cards, userData._id);
