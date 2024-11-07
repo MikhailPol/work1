@@ -5,6 +5,10 @@ import avatarPath from '../images/avatar.jpg';
 import { showPopup, closePopup, handleCardImageClick } from './modal.js';
 import {updateUserInfo, addNewCard, updateAvatar, fetchCards,  loadUserInfoFromServer, getUserInfo, getInitialCards, toggleLike_1, updateCards, che } from './api.js';
 import { createCard, renderCards } from './card.js';
+import { getBut } from './display.js';
+import { startDisplay } from './display.js';
+import { handleButtonClick } from './modal.js';
+
 
 import '../pages/index.css';
 
@@ -17,79 +21,81 @@ const avatarForm = document.querySelector('.popup_type_avatar .popup__form');
 const profileTitle = document.querySelector('.profile__title');
 const profileDesc = document.querySelector('.profile__description');
 const avatar = document.querySelector('.profile__image');
-const popupEdit = document.querySelector('.popup_type_edit');
+// const popupEdit = document.querySelector('.popup_type_edit');
 const popupNewCard = document.querySelector('.popup_type_new-card');
 const popupImg = document.querySelector('.popup_type_image');
 const saveNewCardButton = newCardForm.querySelector('.popup__button');
 const popupClose = document.querySelectorAll('.popup__close');
-const formForEditProfile = popupEdit.querySelector('.popup__form');
-const nameInput = formForEditProfile.querySelector('.popup__input_type_name');
-const jobInput = formForEditProfile.querySelector('.popup__input_type_description');
-const formForNewCard = popupNewCard.querySelector('.popup__form');
-const placeNameInput = formForNewCard.querySelector('.popup__input_type_card-name');
-const linkInput = formForNewCard.querySelector('.popup__input_type_url');
+// const formForEditProfile = popupEdit.querySelector('.popup__form');
+// const nameInput = formForEditProfile.querySelector('.popup__input_type_name');
+// const jobInput = formForEditProfile.querySelector('.popup__input_type_description');
+// const formForNewCard = popupNewCard.querySelector('.popup__form');
+// const placeNameInput = formForNewCard.querySelector('.popup__input_type_card-name');
+// const linkInput = formForNewCard.querySelector('.popup__input_type_url');
 
 
-const userData = await getUserInfo();
-const cards = await getInitialCards();
+// const userData = await getUserInfo();
+// const cards = await getInitialCards();
 
-function display(userData, cards) {
-    renderCards(cards, userData._id);
-    const likeButtons = document.querySelectorAll('.card__like-button');
-    const likeCount = document.querySelectorAll('.card__like-count')
-    likeButtons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            const currentCard = cards[index];
-            const cardId = currentCard._id;
-            const isLiked1 = button.classList.contains('card__like-button_is-active');
-            toggleLike_1(cardId, isLiked1);
-            console.log(isLiked1);
-            isLiked1 == true ?likeCount[index].textContent-- : likeCount[index].textContent++;
-            button.classList.toggle('card__like-button_is-active');
-        });
-    });
-}
+// function display(userData, cards) {
+//     renderCards(cards, userData._id);
+//     const likeButtons = document.querySelectorAll('.card__like-button');
+//     const likeCount = document.querySelectorAll('.card__like-count')
+//     likeButtons.forEach((button, index) => {
+//         button.addEventListener('click', () => {
+//             const currentCard = cards[index];
+//             const cardId = currentCard._id;
+//             const isLiked1 = button.classList.contains('card__like-button_is-active');
+//             toggleLike_1(cardId, isLiked1);
+//             console.log(isLiked1);
+//             isLiked1 == true ?likeCount[index].textContent-- : likeCount[index].textContent++;
+//             button.classList.toggle('card__like-button_is-active');
+//         });
+//     });
+// }
 
-display(userData, cards)
+// display(userData, cards)
 
+startDisplay(); // Отображаем страницу
+document.addEventListener('click', handleButtonClick); // Устанавливаем слушатель событий на страницу
 
-// Поп-апы (Открытие, закрытие)
-const handleButtonClick = (event) => {
-    // Получаем кнопку, которая была нажата
-    const button = event.target;
-    if (button.tagName != "BUTTON") return; // Если это не кнопка, прекращаем выполнение
-    console.log(button.classList)
-    //Открываем
+// // Поп-апы (Открытие, закрытие)
+// const handleButtonClick = (event) => {
+//     // Получаем кнопку, которая была нажата
+//     const button = event.target;
+//     if (button.tagName != "BUTTON") return; // Если это не кнопка, прекращаем выполнение
+//     console.log(button.classList)
+//     console.log('click')
+//     //Открываем
 
-    // Поп-апп добавления карточки
-    if (button.classList.contains('profile__add-button')) {
-        const addCardPop = document.querySelector('.popup_type_new-card');
-        showPopup(addCardPop);
-        console.log('click')
-    }
-    // Поп-апп изменения профиля
-    if (button.classList.contains('profile__edit-button')) {
-        const editProfilePop = document.querySelector('.popup_type_edit');
-        showPopup(editProfilePop);
-    }
-    // Поп-апп изменения аватара
-    if (button.classList.contains('profile-pen')) {
-        const editProfilePop = document.querySelector('.popup_type_avatar');
-        showPopup(editProfilePop);
-    }
+//     // Поп-апп добавления карточки
+//     if (button.classList.contains('profile__add-button')) {
+//         const addCardPop = document.querySelector('.popup_type_new-card');
+//         showPopup(addCardPop);
+//         console.log('click')
+//     }
+//     // Поп-апп изменения профиля
+//     if (button.classList.contains('profile__edit-button')) {
+//         const editProfilePop = document.querySelector('.popup_type_edit');
+//         showPopup(editProfilePop);
+//     }
+//     // Поп-апп изменения аватара
+//     if (button.classList.contains('profile-pen')) {
+//         const editProfilePop = document.querySelector('.popup_type_avatar');
+//         showPopup(editProfilePop);
+//     }
   
-    //Закрытия поп-апов.
-    if(button.classList.contains('popup__close')) {
-        const rmPop = document.querySelector('.popup-opened');
-        console.log(rmPop)
-        console.log('ck')
-        closePopup(rmPop);
+//     //Закрытия поп-апов.
+//     if(button.classList.contains('popup__close')) {
+//         const rmPop = document.querySelector('.popup-opened');
+//         console.log(rmPop)
+//         console.log('ck')
+//         closePopup(rmPop);
         
-        console.log('sa')
-    }
-}
-// Устанавливаем слушатель событий на страницу
-document.addEventListener('click', handleButtonClick);
+//         console.log('sa')
+//     }
+// }
+
 
 // Логика смены информации о пользователе
 // console.log(profileForm)
@@ -100,23 +106,23 @@ document.addEventListener('click', handleButtonClick);
 //     console.log(userName, description)
 // })
 
-// Обновление информации о пользователе
-profileForm.addEventListener('submit', async (event) => {
-  event.preventDefault();
-  const nameInput = profileForm.querySelector('.popup__input_type_name');
-  const aboutInput = profileForm.querySelector('.popup__input_type_description');
-  const name = nameInput.value;
-  const about = aboutInput.value;
 
-  try {
-    const updatedData = await updateUserInfo(name, about);
-    profileTitle.textContent = updatedData.name;
-    profileDesc.textContent = updatedData.about;
-    closePopup(popupEdit);
-  } catch (err) {
-    console.error('Ошибка обновления профиля:', err);
-  }
-});
+// let forms = document.querySelectorAll('.popup__form');
+// forms.forEach((form) => {
+//     // console.log(form);
+//     if(form.name == 'avatar-update'){
+//         const avatarButton = form.querySelector('.button');
+//         // console.log(avatarButton)
+//         const avatarInput = form.querySelector('.popup__input_type_avatar-link');
+//         // console.log(avatarInput)
+
+//     }
+
+// })
+// getBut()
+
+
+
 
 // Производим рендеринг страницы на основе полученных данных
 // renderCards(cards, userData._id);
@@ -195,11 +201,11 @@ profileForm.addEventListener('submit', async (event) => {
 //   }
 
   
-  function updateUserInfoOnPage(userData) {
-    profileTitle.textContent = userData.name;
-    profileDesc.textContent = userData.about;
-    avatar.style.backgroundImage = `url(${userData.avatar})`;
-}
+//   function updateUserInfoOnPage(userData) {
+//     profileTitle.textContent = userData.name;
+//     profileDesc.textContent = userData.about;
+//     avatar.style.backgroundImage = `url(${userData.avatar})`;
+// }
 
 
 
