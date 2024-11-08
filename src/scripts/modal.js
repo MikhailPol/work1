@@ -1,5 +1,6 @@
-import { validation } from "./validation";
-import { check } from "./validation";
+import { editProfile } from "./editProfile";
+import { updateUserAvatar } from "./updateAvatar";
+import { addCard } from "./addCard";
 
 
 export function showPopup(popup) {
@@ -68,20 +69,27 @@ export const handleButtonClick = (event) => {
     }
     //Закрытия поп-апов.
     if(button.classList.contains('popup__close')) {
-        // const rmPop = document.querySelector('.popup-opened');
         const rmPop = button.closest('.popup');
         closePopup(rmPop);
     }
-    // Кнопка "Сохранить"
-    if(button.innerText == 'Сохранить') {
-        const openPopup = button.closest('.popup')
-        const form = button.closest('.popup__form');
-        // validation(form, button)
-        check()
-        // console.log(form)
-        // closePopup(openPopup)
+    // Кнопка "Сохранить" редактирвоания профиля
+    if(button.closest('.popup_type_edit')) {
+        const form = button.closest('.popup');
+        event.preventDefault();
+        editProfile(button, form)
+    }
+    // Кнопка "Сохранить" редактирования аватара
+    if(button.closest('.popup_type_avatar')) {
+        const form = button.closest('.popup');
+        event.preventDefault();
+        updateUserAvatar(button, form)
+    }
+    if(button.closest('.popup_type_new-card')) {
+        const form = button.closest('.popup');
+        event.preventDefault();
+        addCard(button, form)
+    }
+    if(button.closest('.popup_type_delete')){
+        const form = button.closest('.popup');
     }
 }
-
-//popup__button
-//popup__button

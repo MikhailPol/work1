@@ -3,11 +3,17 @@ import { createCard, renderCards } from './card.js';
 
 const userData = await getUserInfo();
 const cards = await getInitialCards();
+const userName = document.querySelector('.profile__title');
+const userAbot = document.querySelector('.profile__description');
+const userAvatar = document.querySelector('.profile__image');
 
 function display(userData, cards) {
+  userAvatar.style.backgroundImage = `url(${userData.avatar})`;
+  userName.textContent = userData.name;
+  userAbot.textContent = userData.about;
   renderCards(cards, userData._id);
   const likeButtons = document.querySelectorAll('.card__like-button');
-  const likeCount = document.querySelectorAll('.card__like-count')
+  const likeCount = document.querySelectorAll('.card__like-count');
   likeButtons.forEach((button, index) => {
       button.addEventListener('click', () => {
           const currentCard = cards[index];

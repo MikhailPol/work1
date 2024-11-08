@@ -8,6 +8,8 @@ import { createCard, renderCards } from './card.js';
 import { getBut } from './display.js';
 import { startDisplay } from './display.js';
 import { handleButtonClick } from './modal.js';
+import { editProfile } from './editProfile.js'
+import { show } from './deleteCards.js';
 
 
 import '../pages/index.css';
@@ -56,8 +58,28 @@ const popupClose = document.querySelectorAll('.popup__close');
 
 // display(userData, cards)
 
-startDisplay(); // Отображаем страницу
-document.addEventListener('click', handleButtonClick); // Устанавливаем слушатель событий на страницу
+// document.addEventListener('DOMContentLoaded', startDisplay) // Отображаем страницу
+startDisplay()
+document.addEventListener('click', handleButtonClick);
+ // Устанавливаем слушатель событий на страницу
+// handleButtonClick()
+
+
+// profileForm.addEventListener('click', (event) => {
+//     event.preventDefault();
+//     console.log('click')
+// })
+
+
+
+
+
+
+
+
+
+
+
 
 // // Поп-апы (Открытие, закрытие)
 // const handleButtonClick = (event) => {

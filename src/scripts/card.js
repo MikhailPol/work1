@@ -26,7 +26,7 @@ export function createCard(cardData, userId) {
     // Устанавливаем иконку удаления карточки, если создатель мы
     const deleteButton = cardElement.querySelector('.card__delete-button');
     if (cardData.owner && cardData.owner._id === userId) {
-        deleteButton.addEventListener('click', () => openDeletePopup(cardElement, cardData._id));
+        // deleteButton.addEventListener('click', () => openDeletePopup(cardElement, cardData._id));
     } else {
         deleteButton.remove();
     }

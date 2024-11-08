@@ -25,7 +25,13 @@ export function check() {
 }
 //popup__error
 
+export function checkTextInput(field) {
+  return /^[A-Za-zА-Яа-яёЁ\s-]+$/.test(field);
+}
 
+export function checkImageInput(field) {
+  return /\.(jpe?g|png|gif|bmp|webp)$/i.test(field);
+}
 
 // // validation.js
 // export function checkEditProfileFormValidity() {

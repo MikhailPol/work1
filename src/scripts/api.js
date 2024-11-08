@@ -95,6 +95,7 @@ export const updateUserInfo = async (name, about) => {
     headers: config.headers,
     body: JSON.stringify({ name, about })
   });
+  console.log('data send')
   return checkResponse(res);
 };
 
@@ -106,6 +107,7 @@ export const addNewCard = async (name, link) => {
     headers: config.headers,
     body: JSON.stringify({ name, link })
   });
+  console.log('send')
   return checkResponse(res);
 };
 
@@ -209,6 +211,7 @@ export const updateAvatar = async (avatarUrl) => {
     headers: config.headers,
     body: JSON.stringify({ avatar: avatarUrl })
   });
+  console.log('ava send')
   return checkResponse(res);
 };
 //-----------Не использовалось, удали если не надо
