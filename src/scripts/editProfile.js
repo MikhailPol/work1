@@ -6,7 +6,7 @@ const profileName = document.querySelector('.popup__input_type_name'); // Пол
 const profileDesc = document.querySelector('.popup__input_type_description'); // Поле ввода описания
 const currentName = document.querySelector('.profile__title'); // Имя
 const currentDesc = document.querySelector('.profile__description'); // Описание
-const saveButton = document.querySelector('.popup__button'); // Кнопка "Сохранить"
+const saveButton = document.querySelector('.save__profile'); // Кнопка "Сохранить"
 const msgError = document.querySelector('#description-error') // Сообщение о ошибке
 
 // Функция для проверки корректности введенных значений
@@ -45,6 +45,5 @@ export function editProfile() {
         closePopup(document.querySelector('.popup_type_edit'));
     }
 }
-
 // Начальная проверка
 updateButtonState();

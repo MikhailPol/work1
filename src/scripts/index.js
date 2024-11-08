@@ -1,44 +1,18 @@
-//index.js
-import { enableValidation, clearValidation } from './validation'; 
-import logoPath from '../images/logo.svg';
-import avatarPath from '../images/avatar.jpg';
-import { showPopup, closePopup, handleCardImageClick } from './modal.js';
-import {updateUserInfo, addNewCard, updateAvatar, fetchCards,  loadUserInfoFromServer, getUserInfo, getInitialCards, toggleLike_1, updateCards, che } from './api.js';
-import { createCard, renderCards } from './card.js';
-import { getBut } from './display.js';
+
+import logoPath from '../images/logo.svg'; // Нужно??
+import avatarPath from '../images/avatar.jpg'; // НУжно??
 import { startDisplay } from './display.js';
 import { handleButtonClick } from './modal.js';
-import { editProfile } from './editProfile.js'
-import { show } from './deleteCards.js';
-
-
 import '../pages/index.css';
-
-
-
-// Элементы
-const profileForm = document.forms['edit-profile'];
-const newCardForm = document.forms['new-place'];
-const avatarForm = document.querySelector('.popup_type_avatar .popup__form');
-const profileTitle = document.querySelector('.profile__title');
-const profileDesc = document.querySelector('.profile__description');
-const avatar = document.querySelector('.profile__image');
-// const popupEdit = document.querySelector('.popup_type_edit');
-const popupNewCard = document.querySelector('.popup_type_new-card');
-const popupImg = document.querySelector('.popup_type_image');
-const saveNewCardButton = newCardForm.querySelector('.popup__button');
-const popupClose = document.querySelectorAll('.popup__close');
-
-
-
-
-
-// --------------------------------------------------------------
 
 
 
 startDisplay()
 document.addEventListener('click', handleButtonClick);
+
+
+
+
 
 
 
@@ -674,18 +648,15 @@ document.addEventListener('click', handleButtonClick);
 //             console.error('Ошибка загрузки данных:', err);
 //         }
 //     });
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
-// Не использовалось, удали если не надо
 
 // //3. Загрузка информации о пользователе с сервера
 // async function loadUserInfo() {
-//     const userData = await loadUserInfoFromServer()
-//     document.querySelector('.profile__title').textContent = userData.name;
-//     document.querySelector('.profile__description').textContent = userData.about;
-//     document.querySelector('.profile__image').style.backgroundImage = `url(${userData.avatar})`;
-//     console.log(userData)
-//     return userData
-// }
-
-// getUserInfo();
-// loadPageData()
+    //     const userData = await loadUserInfoFromServer()
+    //     document.querySelector('.profile__title').textContent = userData.name;
+    //     document.querySelector('.profile__description').textContent = userData.about;
+    //     document.querySelector('.profile__image').style.backgroundImage = `url(${userData.avatar})`;
+    //     console.log(userData)
+    //     return userData
+    // }
+    
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
