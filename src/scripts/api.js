@@ -95,7 +95,6 @@ export const updateUserInfo = async (name, about) => {
     headers: config.headers,
     body: JSON.stringify({ name, about })
   });
-  console.log('data send')
   return checkResponse(res);
 };
 

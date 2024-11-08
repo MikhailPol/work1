@@ -1,11 +1,14 @@
 import { handleCardImageClick } from './modal.js';
-import { toggleLike, token, toggleLike_1 } from './api.js'; 
-import { showPopup, closePopup } from './modal.js';
+import { showPopup } from './modal.js';
 
 // Функция для создания карточки на основе данных с сервера
 export function createCard(cardData, userId) {
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.cloneNode(true);
+
+    // Устанавливаем ID карточки -- OK
+    const card = cardElement.querySelector('.places__item');
+    card.id = cardData._id;
 
     // Устанавливаем изображение карточки -- OK
     const cardImage = cardElement.querySelector('.card__image');
@@ -57,17 +60,17 @@ export function renderCards(cards, userId) {
 //     toggleLike(event, likeCount, cardData);
 //     // toggleLike(cardData._id, false);
 // });
-function openDeletePopup(cardElement, cardId) {
-    const deletePopup = document.querySelector('.popup_type_delete'); // Убедитесь, что у вас есть этот попап в HTML
-    showPopup(deletePopup); // Функция для открытия попапа
+// function openDeletePopup(cardElement, cardId) {
+//     const deletePopup = document.querySelector('.popup_type_delete'); // Убедитесь, что у вас есть этот попап в HTML
+//     showPopup(deletePopup); // Функция для открытия попапа
 
-    const confirmDeleteButton = deletePopup.querySelector('.popup__confirm-delete');
-    confirmDeleteButton.onclick = () => handleDeleteCard(cardElement, cardId, deletePopup);
+//     const confirmDeleteButton = deletePopup.querySelector('.popup__confirm-delete');
+//     confirmDeleteButton.onclick = () => handleDeleteCard(cardElement, cardId, deletePopup);
 
-    // deletePopup.addEventListener('click', ()=> {
-    //     closePopup(deletePopup);
-    // })
-}
+//     // deletePopup.addEventListener('click', ()=> {
+//     //     closePopup(deletePopup);
+//     // })
+// }
 
 
 

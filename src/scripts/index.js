@@ -28,6 +28,22 @@ const popupNewCard = document.querySelector('.popup_type_new-card');
 const popupImg = document.querySelector('.popup_type_image');
 const saveNewCardButton = newCardForm.querySelector('.popup__button');
 const popupClose = document.querySelectorAll('.popup__close');
+
+
+
+
+
+// --------------------------------------------------------------
+
+
+
+startDisplay()
+document.addEventListener('click', handleButtonClick);
+
+
+
+
+// --------------------------------------------------------------
 // const formForEditProfile = popupEdit.querySelector('.popup__form');
 // const nameInput = formForEditProfile.querySelector('.popup__input_type_name');
 // const jobInput = formForEditProfile.querySelector('.popup__input_type_description');
@@ -59,8 +75,6 @@ const popupClose = document.querySelectorAll('.popup__close');
 // display(userData, cards)
 
 // document.addEventListener('DOMContentLoaded', startDisplay) // Отображаем страницу
-startDisplay()
-document.addEventListener('click', handleButtonClick);
  // Устанавливаем слушатель событий на страницу
 // handleButtonClick()
 

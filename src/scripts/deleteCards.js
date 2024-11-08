@@ -1,7 +1,4 @@
-import { deleteCard } from "./api";
-
-const cardsFroDelete = document.querySelectorAll('card__delete-button');
-
-export function show() {
-    console.log(cardsFroDelete)
+export function removeFromDisplay(card) {
+    const display = document.querySelector('.places__list');
+    display.removeChild(card);
 }

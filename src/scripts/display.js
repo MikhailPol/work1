@@ -1,5 +1,5 @@
-import {updateUserInfo, addNewCard, updateAvatar, fetchCards,  loadUserInfoFromServer, getUserInfo, getInitialCards, toggleLike_1, updateCards, che } from './api.js';
-import { createCard, renderCards } from './card.js';
+import { getUserInfo, getInitialCards, toggleLike_1} from './api.js';
+import {renderCards } from './card.js';
 
 const userData = await getUserInfo();
 const cards = await getInitialCards();

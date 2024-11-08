@@ -1,29 +1,3 @@
-export function validation(form, button) {
-  const regExp = /\.(jpe?g|png|gif|bmp|webp)$/i;
-  const inputField = form.querySelector('.popup__input');
-  const forms = document.querySelectorAll('form')
-  console.log(forms)
-  console.log(form)
-  // if(!regExp.test(inputField)) {
-
-  // }
-}
-
-
-const regEx = {
-  checkInputImg: /\.(jpe?g|png|gif|bmp|webp)$/i,
-  checkInputProfile: /^[A-Za-zА-Яа-яёЁ\s-]+$/,
-};
-
-export function check() {
-  const forms = document.querySelectorAll('form')
-  forms.forEach(form => {
-    form.addEventListener('click', () => {
-      console.log('sdad')
-    })
-  })
-}
-//popup__error
 
 export function checkTextInput(field) {
   return /^[A-Za-zА-Яа-яёЁ\s-]+$/.test(field);
@@ -32,6 +6,7 @@ export function checkTextInput(field) {
 export function checkImageInput(field) {
   return /\.(jpe?g|png|gif|bmp|webp)$/i.test(field);
 }
+
 
 // // validation.js
 // export function checkEditProfileFormValidity() {

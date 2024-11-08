@@ -1,6 +1,8 @@
 import { editProfile } from "./editProfile";
 import { updateUserAvatar } from "./updateAvatar";
 import { addCard } from "./addCard";
+import {  removeFromDisplay } from "./deleteCards";
+import { deleteCard } from "./api";
 
 
 export function showPopup(popup) {
@@ -32,64 +34,64 @@ export function handleCardImageClick(cardData) {
     showPopup(popupImg);
 }
 
-// export function handleFormSubmitForEditProfilePopup(evt) {
-//     evt.preventDefault();
-//     const popupEdit = document.querySelector('.popup_type_edit');
-//     const profileTitle = document.querySelector('.profile__title');
-//     const profileDesc = document.querySelector('.profile__description');
-//     const nameInput = document.querySelector('.popup__input_type_name');
-//     const jobInput = document.querySelector('.popup__input_type_description');
-//     const nameValue = nameInput.value;
-//     const jobValue = jobInput.value;
-//     profileTitle.textContent = nameValue;
-//     profileDesc.textContent = jobValue;
-//     closePopup(popupEdit);
-// }
-
-
 export const handleButtonClick = (event) => {
     // Получаем кнопку, которая была нажата
     const button = event.target;
     if (button.tagName != "BUTTON") return; // Если это не кнопка, прекращаем выполнение
     //Открываем
-    // Поп-апп добавления карточки
+    // Кнопка открытия добавления карточки
     if (button.classList.contains('profile__add-button')) {
         const addCardPop = document.querySelector('.popup_type_new-card');
         showPopup(addCardPop);
     }
-    // Поп-апп изменения профиля
+    // Кнопка открытия изменения профиля
     if (button.classList.contains('profile__edit-button')) {
         const editProfilePop = document.querySelector('.popup_type_edit');
         showPopup(editProfilePop);
     }
-    // Поп-апп изменения аватара
+    // Кнопка открытия изменения аватара
     if (button.classList.contains('profile-pen')) {
         const editProfilePop = document.querySelector('.popup_type_avatar');
         showPopup(editProfilePop);
     }
-    //Закрытия поп-апов.
+    // Модальное окно удаления карточки
+    if(button.classList.contains('card__delete-button')){
+        const deletePop = document.querySelector('.popup_type_delete');
+        const currentCard = button.closest('.places__item');
+        const delButton = document.querySelector('.popup__confirm-delete');
+        function delCard () {
+            const id = currentCard.id;
+            deleteCard(id)
+            removeFromDisplay(currentCard);
+            closePopup(deletePop);
+            delButton.removeEventListener('click', delCard);
+        };
+        showPopup(deletePop);
+        delButton.addEventListener('click', delCard);
+    
+    }
+
+    //Кнопка закрытия модальных окон
     if(button.classList.contains('popup__close')) {
         const rmPop = button.closest('.popup');
         closePopup(rmPop);
     }
+
     // Кнопка "Сохранить" редактирвоания профиля
-    if(button.closest('.popup_type_edit')) {
-        const form = button.closest('.popup');
+    if(button.closest('.popup__button')) {
         event.preventDefault();
-        editProfile(button, form)
+        editProfile()
     }
+
     // Кнопка "Сохранить" редактирования аватара
     if(button.closest('.popup_type_avatar')) {
-        const form = button.closest('.popup');
         event.preventDefault();
-        updateUserAvatar(button, form)
+        updateUserAvatar()
     }
+    // Кнопка добавления карточки
     if(button.closest('.popup_type_new-card')) {
         const form = button.closest('.popup');
         event.preventDefault();
         addCard(button, form)
-    }
-    if(button.closest('.popup_type_delete')){
-        const form = button.closest('.popup');
-    }
-}
+    };
+};
