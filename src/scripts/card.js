@@ -1,5 +1,5 @@
 import { handleCardImageClick } from './modal.js';
-import { showPopup } from './modal.js';
+import { showPopup, closePopup } from './modal.js';
 
 // Функция для создания карточки на основе данных с сервера
 export function createCard(cardData, userId) {
@@ -14,7 +14,15 @@ export function createCard(cardData, userId) {
     const cardImage = cardElement.querySelector('.card__image');
     cardImage.src = cardData.link;
     cardImage.alt = cardData.name;
-    cardImage.addEventListener('click', () => handleCardImageClick(cardData));
+    cardImage.addEventListener('click', (event) => {
+        handleCardImageClick(cardData);
+        const popUp = document.querySelector('.popup_type_image');
+        popUp.addEventListener('click', (event) => {
+            if (event.target.classList.contains('popup_type_image')) {
+                closePopup(popUp);
+            }
+        })
+    });
 
     // Устанавливаем заголовок карточки -- OK
     const cardTitle = cardElement.querySelector('.card__title');
